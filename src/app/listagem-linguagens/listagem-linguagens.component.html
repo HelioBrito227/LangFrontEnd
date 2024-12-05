@@ -1,8 +1,36 @@
 <mat-card>
     <mat-card-content>
         <mat-toolbar class="toolbar">
-            <span>Linguagens de Programação </span>
+            <span>Listagem de Linguagens de Programação</span>
         </mat-toolbar>
+
+        <div>
+            <div>
+                <strong>Opções de Busca</strong>
+            </div>
+
+            <div>
+                <label><strong>Nome: </strong></label> <input type="text" [(ngModel)]="nomeLinguagem">
+            </div>
+            <div>
+                <label><strong>Tipo de Linguagem: </strong> </label>
+                <select [(ngModel)]="tipo">
+                    <option value="" selected>Selecione um tipo já presente no banco de dados</option>
+                    @for (tipo of tipos; track $index){
+                        <option [value]="tipo">{{tipo}}</option>
+                    }
+                </select>
+            </div>
+            <div>
+                <label><strong>Ano de criação: </strong> </label>
+                <select [(ngModel)]="ano">
+                    <option value="" selected>Selecione um ano já presente no banco de dados</option>
+                    @for (ano of anos; track $index){
+                        <option [value]="ano">{{ano}}</option>
+                    }
+                </select>
+            </div>
+        </div>
     </mat-card-content>
 
 </mat-card>
