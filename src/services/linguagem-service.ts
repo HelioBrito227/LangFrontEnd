@@ -1,6 +1,7 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Linguagem } from '../models/linguagem';
 
 @Injectable({
   providedIn: 'root'
@@ -11,8 +12,12 @@ export class LinguagemService {
 
   constructor(private http: HttpClient) { }
 
-  getLinguagens(){
-    
+  getLinguagens(nomeLinguagem:string | undefined, tipo:string | undefined, ano:string | undefined):Observable<Linguagem[]>{
+    let querryParams = new HttpParams();
+    if (nomeLinguagem){ querryParams = querryParams.append('nome', nomeLinguagem)}
+    if (tipo){ querryParams = querryParams.append('tipo', tipo)}
+    if (ano){ querryParams = querryParams.append('ano', ano)}
+    return this.http.get<Linguagem[]>(this.urlBase + '/todas', {params: querryParams});
   }
 
   getLinguagem(){
@@ -31,11 +36,11 @@ export class LinguagemService {
 
   }
 
-  buscaParamsAnos():Observable<number[]>{
-    return this.http.get<number[]>(this.urlBase+'/buscar_anos')
+  getParamsAnos():Observable<string[]>{
+    return this.http.get<string[]>(this.urlBase + '/buscar_anos')
   }
 
-  buscaParamsTipos():Observable<string[]>{
-    return this.http.get<string[]>(this.urlBase+'/buscar_tipos')
+  getParamsTipos():Observable<string[]>{
+    return this.http.get<string[]>(this.urlBase + '/buscar_tipos')
   }
 }

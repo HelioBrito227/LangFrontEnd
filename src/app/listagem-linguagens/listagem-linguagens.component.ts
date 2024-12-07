@@ -3,6 +3,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
 import { LinguagemService } from '../../services/linguagem-service';
+import { Linguagem } from '../../models/linguagem';
 
 @Component({
     selector: 'app-listagem-linguagens',
@@ -13,9 +14,10 @@ import { LinguagemService } from '../../services/linguagem-service';
 export class ListagemLinguagensComponent implements OnInit {
     @Input() nomeLinguagem: string = "";
     @Input() tipo: string = "";
-    @Input() ano: string = "";
-    anos:number[] =[]
+    @Input() ano : string = "";
+    anos:string[] =[]
     tipos:string[] =[]
+    linguagens:Linguagem[] = []
 
 
     constructor(
@@ -27,18 +29,22 @@ export class ListagemLinguagensComponent implements OnInit {
     }
 
     buscarParamsFiltro(): void {
-        this.linguagemService.buscaParamsAnos()
+        this.linguagemService.getParamsAnos()
         .subscribe((res) => {
             this.anos = res
         })
 
-        this.linguagemService.buscaParamsTipos()
+        this.linguagemService.getParamsTipos()
         .subscribe((res) => {
             this.tipos = res
         })
     }
 
-    buscarLinguagens(nome:string, ano:number, tipo:string):void{
-        
+    buscarLinguagens(nomeLinguagem:string, tipo:string, ano:string):void{
+        this.linguagemService.getLinguagens(nomeLinguagem, tipo, ano )
+        .subscribe((res) => {
+            this.linguagens = res
+            console.log(this.linguagens)
+        })
     }
 }
