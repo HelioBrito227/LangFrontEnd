@@ -1,1 +1,21 @@
-<p>editar-linguagem works!</p>
+<mat-card>
+    <mat-card-content>
+        <mat-toolbar class="toolbar">
+            <span class="titulo">Editar Linguagem</span>
+        </mat-toolbar>
+
+        <div>
+            <label>Nome: </label> <input type="text" [(ngModel)]="nome">
+        </div>
+        <div>
+            <label>Tipo: </label> <input type="text" [(ngModel)]="tipo">
+        </div>
+        <div>
+            <label>Descrição: </label> <input type="text" [(ngModel)]="descricao">
+        </div>
+        <div>
+            <label>Data de Criação: </label> <input type="date" [(ngModel)]="dataCriacao">
+        </div>
+        <button (click)="salvarEdicao()">Salvar</button>
+    </mat-card-content>
+</mat-card>

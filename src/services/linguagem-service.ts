@@ -8,7 +8,7 @@ import { Linguagem } from '../models/linguagem';
 })
 export class LinguagemService {
 
-  private readonly urlBase = 'http://localhost:8080/linguagem'
+  private readonly urlBase = 'http://localhost:8080/linguagens'
 
   constructor(private http: HttpClient) { }
 
@@ -20,20 +20,20 @@ export class LinguagemService {
     return this.http.get<Linguagem[]>(this.urlBase + '/todas', {params: querryParams});
   }
 
-  getLinguagem(){
+  getLinguagem(idLinguagem: number):Observable<Linguagem>{
+    return this.http.get<Linguagem>(this.urlBase + '/linguagem'+idLinguagem)
+  }
+
+  adicionarLinguagem(){
 
   }
 
-  adicionaLinguagem(){
+  excluirLinguagem(){
 
   }
 
-  excluiLinguagem(){
-
-  }
-
-  editaLinguagem(){
-
+  editarLinguagem(linguagem:Linguagem):Observable<any>{
+    return this.http.patch<any>(this.urlBase+'/editar_linguagem', linguagem)
   }
 
   getParamsAnos():Observable<string[]>{

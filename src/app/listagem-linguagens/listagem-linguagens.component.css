@@ -5,3 +5,12 @@
     border: 1px solid #ccc;
     border-radius: 5px;
   }
+
+  .titulo {
+    font-size: large;
+    font-weight: 600;
+  }
+
+  .table {
+    
+  }
