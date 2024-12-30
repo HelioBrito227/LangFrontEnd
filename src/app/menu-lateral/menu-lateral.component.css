@@ -1,0 +1,10 @@
+.container{
+    padding-top: 30px;
+}
+
+.nav-pills .active{
+    color: #000;
+    background-color: transparent;
+    text-decoration: underline;
+    text-decoration-color:blue ;
+}

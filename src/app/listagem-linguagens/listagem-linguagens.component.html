@@ -1,69 +1,77 @@
-<mat-card>
-    <mat-card-content>
-        <mat-toolbar class="toolbar">
-            <span class = "titulo">Listagem de Linguagens de Programação</span>
-        </mat-toolbar>
+<div class="container">
 
-        <div>
-            <div>
-                <strong>Opções de Busca</strong>
-            </div>
+    <div class="titlebox">
+        <span class="titulo">Listagem de Linguagens de Programação</span>
+    </div>
 
-            <div>
-                <label>Nome: </label> <input type="text" [(ngModel)]="nomeLinguagem">
-            </div>
-            <div>
-                <label>Tipo de Linguagem:  </label>
-                <select [(ngModel)]="tipo">
-                    <option value="" selected>Selecione um tipo já presente no banco de dados</option>
-                    @for (tipo of tipos; track $index){
-                        <option [value]="tipo">{{tipo}}</option>
-                    }
-                </select>
-            </div>
-            <div>
-                <label>Ano de criação:  </label>
-                <select [(ngModel)]="ano">
-                    <option value="" selected>Selecione um ano já presente no banco de dados</option>
-                    @for (ano of anos; track $index){
-                        <option [value]="ano">{{ano}}</option>
-                    }
-                </select>
-            </div>
-        </div>
+    <div class="filterContainer">
         <div>
-            <button (click)="buscarLinguagens(nomeLinguagem, tipo, ano)">
-                Filtrar
-            </button>
+            <strong>Opções de Busca</strong>
         </div>
 
-        <mat-table [dataSource]="linguagens">
-            <ng-container matColumnDef="nome">
-                <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
-                <mat-cell *matCellDef="let linguagem">{{linguagem.nome}}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="descricao">
-                <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
-                <mat-cell *matCellDef="let linguagem">{{linguagem.descricao}}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="tipo">
-                <mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
-                <mat-cell *matCellDef="let linguagem">{{linguagem.tipo}}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="dataCriacao">
-                <mat-header-cell *matHeaderCellDef>Data de Criação</mat-header-cell>
-                <mat-cell *matCellDef="let linguagem">{{linguagem.dataCriacao | date:'dd/MM/yyyy'}}</mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="editar">
-                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                <mat-cell *matCellDef="let linguagem"> <a style = "border: none; background-color: transparent;" href="editar-linguagem"><mat-icon style="color: blue;" fontIcon="edit"/></a></mat-cell>
-            </ng-container>
-            <ng-container matColumnDef="excluir">
-                <mat-header-cell *matHeaderCellDef></mat-header-cell>
-                <mat-cell *matCellDef="let linguagem"><button style = "border: none; background-color: transparent;" (click)="excluirLinguagem(linguagem.id)"><mat-icon style="color: crimson;" fontIcon="delete"/></button></mat-cell>
-            </ng-container>
-            <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
-            <mat-row *matRowDef = "let row; columns : colunas"></mat-row>
-        </mat-table>
-    </mat-card-content>
-</mat-card>
+        <div>
+            <label>Nome: </label> <input type="text" [(ngModel)]="nomeLinguagem">
+        </div>
+        <div>
+            <label>Tipo de Linguagem: </label>
+            <select [(ngModel)]="tipo">
+                <option value="" selected>Selecione um tipo já presente no banco de dados</option>
+                @for (tipo of tipos; track $index){
+                <option [value]="tipo">{{tipo}}</option>
+                }
+            </select>
+        </div>
+        <div>
+            <label>Ano de criação: </label>
+            <select [(ngModel)]="ano">
+                <option value="" selected>Selecione um ano já presente no banco de dados</option>
+                @for (ano of anos; track $index){
+                <option [value]="ano">{{ano}}</option>
+                }
+            </select>
+        </div>
+    </div>
+    
+    <div>
+        <button mat-flat-button (click)="buscarLinguagens(nomeLinguagem, tipo, ano)">
+            Filtrar
+        </button>
+    </div>
+    @if(linguagens.length>0){
+    <mat-table [dataSource]="linguagens">
+        <ng-container matColumnDef="nome">
+            <mat-header-cell *matHeaderCellDef>Nome</mat-header-cell>
+            <mat-cell *matCellDef="let linguagem">{{linguagem.nome}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="descricao">
+            <mat-header-cell *matHeaderCellDef>Descrição</mat-header-cell>
+            <mat-cell *matCellDef="let linguagem">{{linguagem.descricao}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="tipo">
+            <mat-header-cell *matHeaderCellDef>Tipo</mat-header-cell>
+            <mat-cell *matCellDef="let linguagem">{{linguagem.tipo}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dataCriacao">
+            <mat-header-cell *matHeaderCellDef>Data de Criação</mat-header-cell>
+            <mat-cell *matCellDef="let linguagem">{{linguagem.dataCriacao | date:'dd/MM/yyyy'}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="editar">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let linguagem"> <a style="border: none; background-color: transparent;"
+                    [routerLink]="['/editar-linguagem/', linguagem.id]"><mat-icon style="color: blue;"
+                        fontIcon="edit" /></a></mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="excluir">
+            <mat-header-cell *matHeaderCellDef></mat-header-cell>
+            <mat-cell *matCellDef="let linguagem"><button style="border: none; background-color: transparent;"
+                    (click)="excluirLinguagem(linguagem.id)"><mat-icon style="color: crimson;"
+                        fontIcon="delete" /></button></mat-cell>
+        </ng-container>
+        <mat-header-row *matHeaderRowDef="colunas"></mat-header-row>
+        <mat-row *matRowDef="let row; columns : colunas"></mat-row>
+    </mat-table>
+    }
+    @if(linguagens.length==0 && posPesquisa==true){
+    <div>Não há resultados que atendam os parâmetros passados. Tente uma nova busca.</div>
+    }
+</div>

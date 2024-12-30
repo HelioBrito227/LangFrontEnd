@@ -1,0 +1,17 @@
+.cabecalho{
+    display: flex;
+    height: 100px;
+    background-color: #002f4d;
+    flex-direction: row;
+    flex: auto;
+}
+
+.container{
+    align-self: center;
+    justify-content: center;
+    color:white;
+}
+
+.titulo{
+    font-size:larger ;
+}

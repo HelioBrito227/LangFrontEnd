@@ -5,16 +5,16 @@
         </mat-toolbar>
 
         <div>
-            <label>Nome: </label> <input type="text" [(ngModel)]="nome">
+            <label>Nome: </label> <input type="text" [(ngModel)]="linguagem.nome"/>
         </div>
         <div>
-            <label>Tipo: </label> <input type="text" [(ngModel)]="tipo">
+            <label>Tipo: </label> <input type="text" [(ngModel)]="tipo"/>
         </div>
         <div>
-            <label>Descrição: </label> <input type="text" [(ngModel)]="descricao">
+            <label>Descrição: </label> <textarea type="text" [(ngModel)]="descricao"></textarea>
         </div>
         <div>
-            <label>Data de Criação: </label> <input type="date" [(ngModel)]="dataCriacao">
+            <label>Data de Criação: </label> <input type="date" [(ngModel)]="dataCriacao"/>
         </div>
         <button (click)="salvarEdicao()">Salvar</button>
     </mat-card-content>

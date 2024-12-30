@@ -7,10 +7,15 @@ import { Linguagem } from '../../models/linguagem';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
     selector: 'app-listagem-linguagens',
-    imports: [MatCardModule, MatToolbarModule, FormsModule, MatIconModule, MatTableModule, CommonModule],
+    imports: [
+        MatCardModule, MatToolbarModule, FormsModule,
+        MatIconModule, MatTableModule,CommonModule,
+        RouterLink, MatButtonModule],
     templateUrl: './listagem-linguagens.component.html',
     styleUrl: './listagem-linguagens.component.css'
 })
@@ -22,6 +27,7 @@ export class ListagemLinguagensComponent implements OnInit {
     tipos: string[] = []
     linguagens: Linguagem[] = []
     colunas: string[] = ['nome', 'descricao', 'tipo', 'dataCriacao', 'editar', 'excluir']
+    posPesquisa = false
 
 
     constructor(
@@ -49,6 +55,7 @@ export class ListagemLinguagensComponent implements OnInit {
             .subscribe((res) => {
                 this.linguagens = res
                 console.log(this.linguagens)
+                this.posPesquisa = true
             })
     }
 

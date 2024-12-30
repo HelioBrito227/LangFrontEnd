@@ -4,6 +4,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { FormsModule } from '@angular/forms';
 import { Linguagem } from '../../models/linguagem';
 import { LinguagemService } from '../../services/linguagem-service';
+import { ActivatedRoute, Params } from '@angular/router';
 
 @Component({
     selector: 'app-editar-linguagem',
@@ -14,7 +15,8 @@ import { LinguagemService } from '../../services/linguagem-service';
 export class EditarLinguagemComponent implements OnInit{
     
     constructor(
-        private linguagemService: LinguagemService
+        private linguagemService: LinguagemService,
+        private route: ActivatedRoute
     ) { }
 
     @Input() nome: string = "";
@@ -23,19 +25,17 @@ export class EditarLinguagemComponent implements OnInit{
     @Input() dataCriacao: Date | undefined 
 
     idLinguagem:number | undefined
-    linguagem:Linguagem | undefined
+    linguagem!:Linguagem
     
     ngOnInit(): void {
-        this.buscarLinguagem(this.idLinguagem!)
-    }
-
-    buscarLinguagem(idLinguagem:number){
-        this.linguagemService.getLinguagem(idLinguagem)
-        .subscribe((res)=>{
-            this.linguagem = res
+        this.route.params.subscribe((params: Params)=>{
+            this.linguagemService.getLinguagem(+[params['id']])
+            .subscribe((res)=>{
+                this.linguagem = res
+                console.log(this.linguagem)
+            })
         })
     }
-
     salvarEdicao(){
         this.linguagemService.editarLinguagem(this.linguagem!)
     }
