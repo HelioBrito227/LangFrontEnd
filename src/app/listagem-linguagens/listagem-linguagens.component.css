@@ -1,12 +1,11 @@
 .container {
   margin-top: 20px;
 
-  display: grid;
 }
 
 .titlebox {
   display: flex;
-  width: 50%;
+  width: 100%;
   align-items: center;
   background-color: #ededed;
   border: 1px solid #ccc;
@@ -15,17 +14,53 @@
 }
 
 .titulo {
+  margin-left: 10px;
   font-size: large;
-  font-weight: 600;
+  font-weight: 400;
 }
 
-.filterContainer{
+.subTitulo {
+  margin-left: 10px;
   margin-top: 10px;
-  display: grid;
+  font-weight: 500;
 }
 
-.filterButton{
-  border-radius: 20px;
-  border-width: 0;
+.filterContainer {
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
+}
 
+.filterButton {
+  margin-left: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.parent{
+  margin-left: 10px;
+}
+
+.table{
+  margin-top: 10px;
+  width: 90%;
+  border: 1px;
+}
+
+mat-header-cell:first-of-type{
+  border-top-left-radius: 9px;
+}
+
+mat-header-cell:last-of-type{
+  border-top-right-radius: 9px;
+}
+
+mat-cell, mat-header-cell{
+  border-bottom:1px rgb(192, 185, 185) solid ;
+}
+
+.mat-column-excluir, .mat-column-editar{
+  flex: 0 8%;
 }
